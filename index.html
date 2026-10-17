@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Cumpleaños</title>
+<!DOCTYPE html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Cumpleaños</title><link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect x='29' y='6' width='6' height='16' rx='2' fill='%2338bdf8'/><path d='M32 0c4 4 5 7 0 10c-5-3-4-6 0-10z' fill='%23fbbf24'/><rect x='10' y='22' width='44' height='16' rx='6' fill='%23f472b6'/><path d='M10 30q5 7 11 0q5 7 11 0q5 7 11 0q5 7 11 0v-4H10z' fill='%23fff'/><rect x='6' y='38' width='52' height='18' rx='6' fill='%23fb923c'/><rect x='2' y='54' width='60' height='7' rx='3.5' fill='%23a855f7'/></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Poppins:wght@400;600;700;800&family=Noto+Color+Emoji&display=swap" rel="stylesheet">
 <style>
 :root{--g:#ec4899;--tx:#3b1a4a;--mu:#8a5f9c;--bd:#f6d3ea}
@@ -59,13 +59,24 @@ td select{padding:7px 3px;border:2px solid var(--bd);border-radius:10px;font-siz
 .mc h3{margin:0 0 8px;padding-right:40px;font:700 23px Fredoka,sans-serif,"Noto Color Emoji";color:#6d1b8f}.mc label{display:block;font-weight:700;font-size:13px;margin-top:12px;color:var(--mu)}
 .mc input{width:100%;margin-top:4px;padding:9px 10px;border:2px solid var(--bd);border-radius:10px;color:var(--tx)}
 .mc .x{position:absolute;top:10px;right:10px;width:34px;height:34px;padding:0;border:0;border-radius:50%;background:#fde7f3;color:#be185d;cursor:pointer}.mc .x:hover{background:#e11d48;color:#fff}
-.ds{color:var(--mu);margin:6px 0}.ms{min-height:20px;margin-top:10px;font-weight:700;font-size:13px;color:#e11d48}.ms.ld{color:var(--mu)}.ms.ok{color:#15803d}
+.ds{color:var(--mu);margin:6px 0}.ms{min-height:20px;margin-top:10px;font-weight:700;font-size:13px;color:#e11d48}.ms.ld,.ms.vf{color:var(--mu)}.ms.ok{color:#15803d}
 .fx{display:flex;gap:10px;justify-content:flex-end;margin-top:14px;flex-wrap:wrap}
 .pw{display:flex;gap:6px}.pw button{border:0;background:#fde7f3;border-radius:10px;padding:0 12px;cursor:pointer;margin-top:4px;font-weight:700}
 .tw{overflow:auto;max-height:58vh;border:3px solid var(--bd);border-radius:14px}
 table{border-collapse:collapse;width:100%;min-width:900px}th{position:sticky;top:0;background:#fde7f3;font-size:12px;text-align:left;padding:8px;color:#be185d}
 td{padding:4px;border-top:1px solid var(--bd)}td input{margin:0;padding:7px 8px;font-size:13.5px}td:first-child{font-weight:700;font-size:12px;white-space:nowrap;color:var(--mu);padding-left:8px}
 table{min-width:1100px!important}
+td input:placeholder-shown{background:#fff6df;border:2px dashed #ecd9a8}
+td input:placeholder-shown::placeholder{color:#c2a96b}
+tr.vac td:first-child{opacity:.5}
+tr:not(.vac) td:first-child{color:#86198f}
+tr:focus-within td{background:#cfe6ff;border-top-color:#9cc8f5}
+tr:focus-within td:first-child{box-shadow:inset 6px 0 0 #2563eb;color:#1d4ed8;opacity:1}
+tr:focus-within td input:not(:placeholder-shown){background:#fff;border:2px solid #60a5fa}
+tr:focus-within td input:focus{outline:3px solid #2563eb;outline-offset:0}
+tr.dup td input[data-k=dni],tr.dup td input[data-k=asesor],tr.dup:focus-within td input[data-k=dni],tr.dup:focus-within td input[data-k=asesor]{background:#fee2e2;border:2px solid #ef4444}
+tr.dupn td input[data-k=asesor],tr.dupn:focus-within td input[data-k=asesor]{background:#fef3c7;border:2px solid #f59e0b}
+
 .av{width:46px;height:46px;border-radius:50%;object-fit:cover;border:3px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,.25);float:left;margin-right:10px}
 .avg{display:block;width:120px;height:120px;border-radius:50%;object-fit:cover;border:5px solid #fff;box-shadow:0 4px 14px rgba(0,0,0,.3);margin:6px auto 4px}
 .th{width:54px;height:54px;object-fit:cover;border-radius:10px;border:2px solid var(--bd);margin-bottom:3px}.fc{white-space:nowrap;padding-left:6px}.pc,.it{overflow:hidden}
@@ -73,7 +84,7 @@ table{min-width:1100px!important}
 .fcw{display:flex;align-items:center;gap:6px}.fcb{display:flex;flex-direction:column;gap:3px;align-items:flex-start}.fcw .th{margin:0;width:42px;height:42px}
 td input.bad{border-color:#e11d48!important}
 #ts{display:none;position:fixed;top:92px;left:50%;transform:translateX(-50%);z-index:120;padding:10px 22px;border-radius:20px;font-weight:700;box-shadow:0 6px 18px rgba(0,0,0,.3);max-width:90vw;text-align:center}
-#ts.tl{background:#fff;color:#6d1b8f}#ts.ok{background:#16a34a;color:#fff}#ts.er{background:#e11d48;color:#fff}
+#ts.tl{background:#fff;color:#6d1b8f}#ts.tv{top:auto;bottom:10px;padding:4px 14px;border-radius:14px;font-weight:400;font-size:12px;background:rgba(255,255,255,.7);color:#8a5f9c;box-shadow:0 1px 4px rgba(0,0,0,.12);pointer-events:none}#ts.ok{background:#16a34a;color:#fff}#ts.er{background:#e11d48;color:#fff}
 .fbw{margin-bottom:14px}.fbw .fb{margin-bottom:0}.fbt{display:none}
 @media(max-width:700px){.fbt{display:block;width:100%}.fbw:not(.open) .fb{display:none}.fbw.open .fbt{margin-bottom:8px}}
 @media(max-width:600px){.sg{grid-template-columns:1fr}.cd{min-height:54px;padding:2px}.cd em{font-size:9px;padding:0 2px}.cd.bd:before{font-size:11px}.vb{font-size:11px;padding:5px 10px}.bn{font-size:13px;padding-left:96px}}
@@ -95,9 +106,11 @@ const $=s=>document.querySelector(s),E=s=>String(s==null?'':s).replace(/[&<>"']/
 let SEDE=null,ITEMS=[],ST='idle',TK='',MSEDE='',CM=0,CY=0,ROWS=[];
 const colDe=n=>(SEDES.find(s=>s[0]==n)||[0,'#86198f'])[1];
 let TT;
+let CAL=0;function calienta(){if(Date.now()-CAL<240000)return;CAL=Date.now();try{fetch(URL_API,{method:'POST',body:JSON.stringify({accion:'ping'})}).catch(()=>{})}catch(e){}}
+calienta();setInterval(calienta,270000);
 const msg=(t,c)=>{const m=$('#mm');if(m){m.textContent=t;m.className='ms '+(c||'')}
  const o=$('#ts');if(!o)return;clearTimeout(TT);if(!t){o.style.display='none';return}
- o.textContent=t;o.className=c=='ld'?'tl':c=='ok'?'ok':'er';o.style.display='block';if(c!='ld')TT=setTimeout(()=>{o.style.display='none'},3500)};
+ o.textContent=t;o.className=c=='ld'?'tl':c=='vf'?'tv':c=='ok'?'ok':'er';o.style.display='block';if(c!='ld'&&c!='vf')TT=setTimeout(()=>{o.style.display='none'},3500)};
 const busy=b=>document.querySelectorAll('#md .bt').forEach(x=>x.disabled=b);
 async function api(p){
  if(URL_API.startsWith('PEGA'))throw new Error('Falta conectar la base de datos (URL del Apps Script).');
@@ -160,9 +173,9 @@ function dia(d){const li=ITEMS.filter(x=>{const o=md(x.fecha);return o.m==CM&&o.
  modal(X+'<h3>🎂 '+d+' de '+MES[CM]+'</h3>'+li.map(tarj).join('')+'<div class="fx"><button class="bt" data-a="cerrar">Cerrar</button></div>',colDe(SEDE))}
 
 /* ===== Master ===== */
-function loginM(){modal(X+'<h3>Acceso master</h3><p class="ds">Solo podrás editar los cumpleaños de tu sede.</p><label>Clave<div class="pw"><input id="mp" type="password" autocomplete="new-password" placeholder="Clave"><button type="button" data-a="ojo">Ver</button></div></label><div id="mm" class="ms"></div><div class="fx"><button class="bt w" data-a="cerrar">Cancelar</button><button class="bt" data-a="entrar">Entrar</button></div>','#111827')}
-async function entrar(){const c=$('#mp').value.trim();if(!c){msg('Escribe la clave.');return}msg('Verificando…','ld');busy(true);
- try{const j=await api({accion:'login',clave:c});TK=j.token;MSEDE=SEDE=j.sede;const n=new Date();CM=n.getMonth();CY=n.getFullYear();cerrar();cargar()}catch(e){busy(false);msg(e.message)}}
+function loginM(){calienta();modal(X+'<h3>Acceso master</h3><p class="ds">Solo podrás editar los cumpleaños de tu sede.</p><label>Clave<div class="pw"><input id="mp" type="password" autocomplete="new-password" placeholder="Clave"><button type="button" data-a="ojo">Ver</button></div></label><div id="mm" class="ms"></div><div class="fx"><button class="bt w" data-a="cerrar">Cancelar</button><button class="bt" data-a="entrar">Entrar</button></div>','#111827')}
+async function entrar(){const c=$('#mp').value.trim();if(!c){msg('Escribe la clave.');return}msg('Verificando… puede tardar unos segundos','vf');busy(true);
+ try{const j=await api({accion:'login',clave:c});TK=j.token;MSEDE=SEDE=j.sede;msg('');const n=new Date();CM=n.getMonth();CY=n.getFullYear();cerrar();cargar()}catch(e){busy(false);msg(e.message)}}
 function salir(){if(TK)api({accion:'logout',token:TK}).catch(()=>{});TK='';MSEDE='';SEDE=null;ITEMS=[];R()}
 const areas=()=>[...new Set(AREAS.concat(ITEMS.map(x=>x.area).filter(Boolean)))];
 const nueva=()=>({id:'c'+Date.now().toString(36)+Math.random().toString(36).slice(2,5),dni:'',asesor:'',area:'',fecha:'',sabores:'',apuntes:'',foto:'',n:1,d:1});
@@ -175,8 +188,15 @@ const mesIdx=v=>{v=nz(v).trim();if(!v)return -1;if(/^\d+$/.test(v)){const n=+v;r
 const fechaCel=f=>{const q=String(f||'').split('-'),m=+q[1]||0,d=+q[2]||0;
  return '<div style="display:flex;gap:4px"><input data-k="dia" inputmode="numeric" maxlength="2" placeholder="Día" value="'+(d||'')+'" style="width:52px;text-align:center"><input data-k="mes" list="mesl" placeholder="Mes" value="'+(m?MES[m-1]:'')+'" style="width:112px" autocomplete="off"></div>'};
 function aplicaQ(){const q=nz(($('#mq')||{}).value||'');let n=0;document.querySelectorAll('#tbd tr').forEach(tr=>{const r=ROWS[+tr.dataset.i],ok=!q||nz([r.asesor,r.dni,r.area,r.sabores,r.apuntes].join(' ')).includes(q);tr.style.display=ok?'':'none';if(ok)n++});const c=$('#mqn');if(c)c.textContent=n+' de '+ROWS.length}
-const fila=(r,i)=>'<tr data-i="'+i+'"><td>'+E(SEDE)+'</td><td>'+inp('dni',r.dni,i,'maxlength="8" inputmode="numeric" placeholder="8 dígitos" style="width:100px"')+'</td><td>'+inp('asesor',r.asesor,i,'maxlength="80" placeholder="Nombre y apellido"')+'</td><td>'+inp('area',r.area,i,'list="ars" maxlength="40" placeholder="Elige o escribe" style="width:140px"')+'</td><td>'+fechaCel(r.fecha)+'</td><td>'+inp('sabores',r.sabores,i,'maxlength="120" placeholder="Ej. Chocolate"')+'</td><td>'+inp('apuntes',r.apuntes,i,'maxlength="300"')+'</td>'+fotoCel(r,i)+'<td><button class="bt r" data-a="delf" data-i="'+i+'" title="Borrar">✕</button></td></tr>';
-const refrescar=()=>{$('#tbd').innerHTML=ROWS.map(fila).join('');aplicaQ()};
+const vacia=r=>!(r.asesor||'').trim()&&!r.dni&&!r.fecha&&!(r.area||'').trim()&&!(r.sabores||'').trim()&&!(r.apuntes||'').trim()&&!r.foto;
+const fila=(r,i)=>'<tr data-i="'+i+'"'+(vacia(r)?' class="vac"':'')+'><td>'+E(SEDE)+'</td><td>'+inp('dni',r.dni,i,'maxlength="8" inputmode="numeric" placeholder="8 dígitos" style="width:100px"')+'</td><td>'+inp('asesor',r.asesor,i,'maxlength="80" placeholder="Nombre y apellido"')+'</td><td>'+inp('area',r.area,i,'list="ars" maxlength="40" placeholder="Elige o escribe" style="width:140px"')+'</td><td>'+fechaCel(r.fecha)+'</td><td>'+inp('sabores',r.sabores,i,'maxlength="120" placeholder="Ej. Chocolate"')+'</td><td>'+inp('apuntes',r.apuntes,i,'maxlength="300" placeholder="Opcional"')+'</td>'+fotoCel(r,i)+'<td><button class="bt r" data-a="delf" data-i="'+i+'" title="Borrar">✕</button></td></tr>';
+function buscaDup(){const D={},N={};ROWS.forEach((r,i)=>{if(/^\d{8}$/.test(r.dni||''))(D[r.dni]=D[r.dni]||[]).push(i);const n=nz(r.asesor||'').trim().replace(/\s+/g,' ');if(n)(N[n]=N[n]||[]).push(i)});
+ return{dni:Object.values(D).filter(a=>a.length>1),nom:Object.values(N).filter(a=>a.length>1)}}
+function marcaDup(){const d=buscaDup(),sd=new Set(d.dni.flat()),sn=new Set(d.nom.flat());
+ document.querySelectorAll('#tbd tr').forEach(tr=>{const i=+tr.dataset.i;tr.classList.toggle('vac',vacia(ROWS[i]));tr.classList.toggle('dup',sd.has(i));tr.classList.toggle('dupn',sn.has(i)&&!sd.has(i))});return d}
+const txtDup=d=>{let t='';d.dni.forEach(a=>{t+='• DNI '+ROWS[a[0]].dni+' repetido en las filas '+a.map(i=>i+1).join(' y ')+' ('+a.map(i=>ROWS[i].asesor||'sin nombre').join(' / ')+')\n'});
+ d.nom.forEach(a=>{t+='• El nombre «'+ROWS[a[0]].asesor.trim()+'» aparece en las filas '+a.map(i=>i+1).join(' y ')+'\n'});return t};
+const refrescar=()=>{$('#tbd').innerHTML=ROWS.map(fila).join('');aplicaQ();marcaDup()};
 function gestion(){ROWS=ITEMS.map(x=>Object.assign({},x));if(!ROWS.length)ROWS.push(nueva());
  modal(X+'<button class="bt w" data-a="max" id="mxb" style="position:absolute;top:12px;right:52px;padding:5px 12px">Ampliar</button><h3 title="Arrastra para mover">🎂 Cumpleaños de '+E(SEDE)+'</h3><p class="ds">Edita cualquier celda y pulsa «Guardar cambios». Arrastra el título para mover la ventana; usa «Ampliar» o la esquina inferior derecha para cambiar su tamaño.</p><div class="mq"><input id="mq" type="search" placeholder="🔎 Buscar por nombre, DNI, área o sabor…" autocomplete="off"><b id="mqn" style="white-space:nowrap;font-size:13px;color:var(--mu)"></b></div><div class="tw"><table><thead><tr><th>Sede</th><th>DNI</th><th>Asesor(a)</th><th>Área</th><th>Cumpleaños</th><th>Sabor de torta</th><th>Otros apuntes</th><th>Foto (opcional)</th><th></th></tr></thead><tbody id="tbd">'+ROWS.map(fila).join('')+'</tbody></table></div><datalist id="mesl">'+MES.map(m=>'<option value="'+m+'">').join('')+'</datalist><input id="fi" type="file" accept="image/*" style="display:none"><datalist id="ars">'+areas().map(a=>'<option value="'+E(a)+'">').join('')+'</datalist><div class="fx" style="justify-content:space-between"><div><button class="bt w" data-a="addf">+ Fila</button> <button class="bt w" data-a="addf5">+ 5 filas</button></div><div><button class="bt w" data-a="cerrar">Cerrar</button> <button class="bt" data-a="gdr">Guardar cambios</button></div></div><div id="mm" class="ms"></div>',colDe(SEDE),'wd2');aplicaQ()}
 function addf(n){const q=$('#mq');if(q)q.value='';for(let i=0;i<n;i++)ROWS.push(nueva());refrescar();const w=$('.tw');w.scrollTop=w.scrollHeight}
@@ -188,6 +208,9 @@ async function gdr(){
   if(!/^\d{8}$/.test(r.dni)){msg('Fila '+k+': el DNI debe tener 8 dígitos.');return}
   if(!/^\d{4}-\d{2}-\d{2}$/.test(r.fecha)){msg('Fila '+k+': escribe el día (1-31) y un mes válido.');return}
   const q=r.fecha.split('-');if(new Date(2000,+q[1]-1,+q[2]).getMonth()!=+q[1]-1){msg('Fila '+k+': esa fecha no existe.');return}}
+ const dd=buscaDup();
+ if(dd.dni.length){marcaDup();alert('⚠️ No se puede guardar: hay DNI duplicados.\n\n'+txtDup({dni:dd.dni,nom:[]})+'\nCorrígelos y vuelve a guardar.');return}
+ if(dd.nom.length&&!confirm('⚠️ Hay nombres repetidos:\n\n'+txtDup({dni:[],nom:dd.nom})+'\n¿Guardar de todas formas?'))return;
  msg('Guardando…','ld');busy(true);
  try{await api({accion:'guardar',token:TK,filas:L.map(r=>({id:r.id,dni:r.dni,asesor:r.asesor.trim(),area:r.area.trim(),fecha:r.fecha,sabores:r.sabores.trim(),apuntes:r.apuntes.trim(),foto:r.foto||''}))});
   const j=await api({accion:'listar',sede:SEDE,token:TK});ITEMS=j.items;ROWS=ITEMS.map(x=>Object.assign({},x));R();refrescar();busy(false);msg('✔ Cambios guardados','ok')}
@@ -235,26 +258,43 @@ document.addEventListener('input',e=>{const t=e.target;
   const d=parseInt(tr.querySelector('[data-k=dia]').value,10),m=mesIdx(tr.querySelector('[data-k=mes]').value);
   r.fecha=(d>=1&&d<=31&&m>=0)?((String(r.fecha||'').split('-')[0])||'2000')+'-'+pad(m+1)+'-'+pad(d):'';r.d=1;return}
  if(k=='dni')t.value=t.value.replace(/\D/g,'');r[k]=t.value;r.d=1});
+document.addEventListener('input',e=>{const t=e.target;if(t.closest&&t.closest('#tbd'))marcaDup()});
+document.addEventListener('change',e=>{const t=e.target,k=t.dataset&&t.dataset.k;if(k!='dni'&&k!='asesor')return;
+ const tr=t.closest('tr[data-i]');if(!tr)return;const i=+tr.dataset.i,r=ROWS[i],d=marcaDup();
+ if(k=='dni'&&/^\d{8}$/.test(r.dni)){const a=d.dni.find(x=>x.includes(i));if(a)alert('⚠️ DNI duplicado\n\nEl DNI '+r.dni+' ya está en la fila '+a.filter(x=>x!=i).map(x=>x+1).join(', ')+' ('+a.filter(x=>x!=i).map(x=>ROWS[x].asesor||'sin nombre').join(', ')+').')}
+ if(k=='asesor'&&r.asesor.trim()){const a=d.nom.find(x=>x.includes(i));if(a)alert('⚠️ Nombre repetido\n\n«'+r.asesor.trim()+'» ya aparece en la fila '+a.filter(x=>x!=i).map(x=>x+1).join(', ')+'. Revisa que no sea un duplicado.')}});
 document.addEventListener('pointerdown',e=>{const h=e.target.closest('.wd2 h3');if(!h||h.closest('.mx'))return;DR={x:e.clientX-DX,y:e.clientY-DY,m:h.closest('.mc')};try{h.setPointerCapture(e.pointerId)}catch(x){}});
 document.addEventListener('pointermove',e=>{if(!DR)return;DX=e.clientX-DR.x;DY=e.clientY-DR.y;DR.m.style.transform='translate('+DX+'px,'+DY+'px)'});
 document.addEventListener('pointerup',()=>{DR=null});
 document.addEventListener('keydown',e=>{if(e.key=='Escape')cerrar();if(e.key=='Enter'&&e.target.id=='mp')entrar()});
 /* ===== Música: "Cumpleaños feliz" sintetizada (sin archivos) y globos ===== */
 const SONG=[[392,.75],[392,.25],[440,1],[392,1],[523.25,1],[493.88,2],[392,.75],[392,.25],[440,1],[392,1],[587.33,1],[523.25,2],[392,.75],[392,.25],[783.99,1],[659.25,1],[523.25,1],[493.88,1],[440,1],[698.46,.75],[698.46,.25],[659.25,1],[523.25,1],[587.33,1],[523.25,2],[0,2]];
-let AC=null,MG=null,NI=0,NT=0,TM=null,MOFF=false;
+let AC=null,MG=null,NI=0,LAP=0,NT=0,TM=null,MOFF=false,AUDIO=false,AUok=null;
+/* Si subes un archivo "pinata.mp3" junto a index.html, suena después de "Cumpleaños feliz" */
+const AU=new Audio('pinata.mp3');AU.preload='auto';AU.volume=.8;
+AU.addEventListener('canplaythrough',()=>{AUok=true});AU.addEventListener('error',()=>{AUok=false});
+AU.addEventListener('ended',()=>{AUDIO=false;LAP++;arranca()});
+function modoAudio(){clearInterval(TM);TM=null;AUDIO=true;AU.currentTime=0;
+ setTimeout(()=>{if(!AUDIO||MOFF)return;AU.play().catch(()=>{AUok=false;AUDIO=false;arranca()})},Math.max(0,(NT-AC.currentTime)*1000))}
 try{MOFF=localStorage.getItem('cu_mus')=='off'}catch(e){}
 const paintMus=()=>{$('#mus').textContent=(MOFF?'🔇':'🎵')+' Música'};
 function nota(f,t,d,v){const o=AC.createOscillator(),o2=AC.createOscillator(),g=AC.createGain();o.type='sine';o2.type='triangle';o.frequency.value=f;o2.frequency.value=f*2;
  g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(v||.16,t+.01);g.gain.exponentialRampToValueAtTime(.0001,t+d);o.connect(g);o2.connect(g);g.connect(MG);o.start(t);o2.start(t);o.stop(t+d+.05);o2.stop(t+d+.05)}
 const BAJO={0:130.81,6:98,12:130.81,19:87.31};
-function sched(){while(NT<AC.currentTime+1){const n=SONG.length,k=NI%n,q=SONG[k],d=q[1]*.64;
- if(q[0])nota(q[0],NT,Math.max(d*1.6,.6));
- if(Math.floor(NI/n)%2==1&&BAJO[k]){nota(BAJO[k],NT,2.4,.12);nota(BAJO[k]*2,NT+.02,2,.05)}
- NT+=d;NI++}}
-function musOn(){if(MOFF||TM)return;try{AC=AC||new(window.AudioContext||window.webkitAudioContext)();if(!MG){MG=AC.createGain();MG.gain.value=.5;MG.connect(AC.destination)}AC.resume();NT=AC.currentTime+.1;TM=setInterval(sched,250);sched()}catch(e){}}
-function musOff(){clearInterval(TM);TM=null;if(AC)AC.suspend()}
+const SONGS=[{n:SONG,t:.64,b:BAJO}];
+/* Orden: Cumpleaños feliz -> pinata.mp3 (si existe) -> vuelve a empezar */
+function sched(){while(NT<AC.currentTime+1){const S=SONGS[0],q=S.n[NI],d=q[1]*S.t;
+ if(q[0])nota(q[0],NT,Math.max(d*1.6,.5));
+ if(S.b&&LAP%2==1&&S.b[NI]){nota(S.b[NI],NT,2.4,.12);nota(S.b[NI]*2,NT+.02,2,.05)}
+ NT+=d;if(++NI>=S.n.length){NI=0;LAP++;if(AUok){modoAudio();return}}}}
+function arranca(){if(MOFF||TM||AUDIO||!AC||AC.state!='running')return;NT=AC.currentTime+.02;TM=setInterval(sched,250);sched()}
+function musOn(){if(MOFF||TM)return;if(AUDIO){AU.play().catch(()=>{});return}try{AC=AC||new(window.AudioContext||window.webkitAudioContext)();if(!MG){MG=AC.createGain();MG.gain.value=.5;MG.connect(AC.destination)}
+ AC.resume().then(arranca).catch(()=>{});arranca()}catch(e){}}
+function musOff(){clearInterval(TM);TM=null;AU.pause();if(AC)AC.suspend()}
 function toggleMus(){MOFF=!MOFF;try{localStorage.setItem('cu_mus',MOFF?'off':'on')}catch(e){}MOFF?musOff():musOn();paintMus()}
-document.addEventListener('click',e=>{if(!e.target.closest('#mus'))musOn()});
+/* Empieza en el primer toque/tecla (sin esperar al "click" completo) */
+['pointerdown','touchstart','keydown'].forEach(ev=>document.addEventListener(ev,e=>{if(!e.target.closest||!e.target.closest('#mus'))musOn()},{passive:true}));
+musOn();
 $('#bl').innerHTML=['#ff4d8d','#ffc300','#2bb7f5','#7bd36b','#a67bff','#fb8500','#ff4d8d','#2bb7f5','#ffc300','#7bd36b'].map((c,i)=>'<span class="bo" style="--c:'+c+';left:'+(5+i*10)+'%;--t:'+(16+i%4*4)+'s;--d:-'+(i*2.3)+'s"></span>').join('');
 paintMus();
 R();
