@@ -87,6 +87,14 @@ td input.bad{border-color:#e11d48!important}
 #ts.tl{background:#fff;color:#6d1b8f}#ts.tv{top:auto;bottom:10px;padding:4px 14px;border-radius:14px;font-weight:400;font-size:12px;background:rgba(255,255,255,.7);color:#8a5f9c;box-shadow:0 1px 4px rgba(0,0,0,.12);pointer-events:none}#ts.ok{background:#16a34a;color:#fff}#ts.er{background:#e11d48;color:#fff}
 .fbw{margin-bottom:14px}.fbw .fb{margin-bottom:0}.fbt{display:none}
 @media(max-width:700px){.fbt{display:block;width:100%}.fbw:not(.open) .fb{display:none}.fbw.open .fbt{margin-bottom:8px}}
+.cfs{display:flex;gap:3px;margin:3px 0 2px;flex-wrap:wrap}
+.cf{width:36px;height:36px;border-radius:50%;object-fit:cover;border:2px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.3);background:#f3e8ff;flex:none}
+.cfi{display:grid;place-items:center;font:700 15px Fredoka,sans-serif;color:#fff;background:#db2777}
+.cd.bd{min-height:96px}
+.mc.wb{max-width:620px}
+.it{text-align:center}.it .avb{display:block;width:auto;height:auto;max-width:100%;max-height:62vh;object-fit:contain;border-radius:20px;border:5px solid #fff;box-shadow:0 6px 20px rgba(0,0,0,.3);margin:4px auto 12px}
+.it b{font-size:22px}.it small{font-size:14px}
+@media(max-width:600px){.cf{width:24px;height:24px;border-width:1px;font-size:11px}.cd.bd{min-height:80px}}
 @media(max-width:600px){.sg{grid-template-columns:1fr}.cd{min-height:54px;padding:2px}.cd em{font-size:9px;padding:0 2px}.cd.bd:before{font-size:11px}.vb{font-size:11px;padding:5px 10px}.bn{font-size:13px;padding-left:96px}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important}}
 </style></head><body>
@@ -135,7 +143,8 @@ function R(){$('#app').innerHTML=SEDE?vista():bienvenida();$('#mbtn').style.disp
 function bienvenida(){return '<h1>🎂 Cumpleaños 🎉</h1><p class="sub">¡Elige tu sede y celebremos!</p><div class="sg">'+SEDES.map(s=>'<button class="sd" style="--c:'+s[1]+'" data-a="sede" data-s="'+E(s[0])+'"><i>🎈</i><span>'+E(s[0])+'<small>¡Ver quién cumple!</small></span></button>').join('')+'</div>'}
 const av=x=>x.foto?'<img class="av" src="'+E(x.foto)+'" alt="" referrerpolicy="no-referrer" loading="lazy">':'';
 const avg=x=>x.foto?'<img class="avg" src="'+E(x.foto)+'" alt="" referrerpolicy="no-referrer">':'';
-const tarj=x=>'<div class="it">'+av(x)+'<b>'+E(x.asesor)+'</b>'+arC(x.area)+'<small>🎂 '+FM(x.fecha)+(x.sabores?' · 🍰 '+E(x.sabores):'')+'</small>'+(x.apuntes?'<small>📝 '+E(x.apuntes)+'</small>':'')+'</div>';
+const avb=x=>x.foto?'<img class="avb" src="'+E(x.foto)+'" alt="" referrerpolicy="no-referrer">':'';
+const tarj=x=>'<div class="it">'+avb(x)+'<b>'+E(x.asesor)+'</b>'+arC(x.area)+'<small>🎂 '+FM(x.fecha)+(x.sabores?' · 🍰 '+E(x.sabores):'')+'</small>'+(x.apuntes?'<small>📝 '+E(x.apuntes)+'</small>':'')+'</div>';
 const nz=t=>String(t==null?'':t).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
 const arK=a=>{const k=nz(a);return k=='ventas'?'v':k=='optimizacion'?'o':k=='carteras'?'c':'x'};
 const arC=a=>a?'<span class="ar ar-'+arK(a)+'">'+E(a)+'</span>':'';
@@ -150,7 +159,7 @@ function pintaRes(){const L=ITEMS.map(x=>Object.assign({dd:dias(x.fecha)},x)),ac
  const px=$('#pxw'),rs=$('#res'),cw=$('#calw');if(!px||!rs||!cw)return;
  px.style.display=act?'none':'block';
  rs.innerHTML=act?'<div class="px"><h3>🔎 Resultados ('+FL.length+')</h3>'+(FL.length?'<div class="pg">'+FL.map(pcard).join('')+'</div>':'<small>No hay cumpleaños con esos filtros.</small>')+'</div>':'';
- cw.innerHTML=cal(act?FL:L)}
+ cw.innerHTML=cal(L)}
 function vista(){
  const top='<div class="tb"><span class="chip" style="--c:'+colDe(SEDE)+'">'+E(SEDE)+'</span><button class="bt w" data-a="cambiar">Cambiar sede</button></div>'
   +(TK&&MSEDE==SEDE?'<div class="mbar">🔓 Master de '+E(MSEDE)+'<span class="sp"></span><button class="bt" data-a="gestion">✏️ Agregar / editar cumpleaños</button><button class="bt w" data-a="salir">Salir</button></div>':'');
@@ -167,10 +176,10 @@ function cal(L){
  for(let i=0;i<first;i++)h+='<div class="cd e"></div>';
  for(let d=1;d<=n;d++){
   const li=L.filter(x=>{const o=md(x.fecha);return o.m==m&&o.d==d}),es=t.getFullYear()==y&&t.getMonth()==m&&t.getDate()==d;
-  h+='<div class="cd'+(es?' hy':'')+(li.length?' bd" data-a="dia" data-d="'+d:'')+'"><span>'+d+'</span>'+li.slice(0,2).map(x=>'<em class="e-'+arK(x.area)+'">'+E(x.asesor.split(' ')[0])+'</em>').join('')+(li.length>2?'<em>+'+(li.length-2)+'</em>':'')+'</div>'}
+  h+='<div class="cd'+(es?' hy':'')+(li.length?' bd" data-a="dia" data-d="'+d:'')+'"><span>'+d+'</span>'+(li.length?'<div class="cfs">'+li.slice(0,2).map(x=>x.foto?'<img class="cf" src="'+E(x.foto)+'" alt="" referrerpolicy="no-referrer" loading="lazy">':'<span class="cf cfi">'+E((x.asesor||'?').trim().charAt(0).toUpperCase())+'</span>').join('')+'</div>':'')+li.slice(0,2).map(x=>'<em class="e-'+arK(x.area)+'">'+E(x.asesor.split(' ')[0])+'</em>').join('')+(li.length>2?'<em>+'+(li.length-2)+'</em>':'')+'</div>'}
  return h+'</div></div>'}
 function dia(d){const li=ITEMS.filter(x=>{const o=md(x.fecha);return o.m==CM&&o.d==d});
- modal(X+'<h3>🎂 '+d+' de '+MES[CM]+'</h3>'+li.map(tarj).join('')+'<div class="fx"><button class="bt" data-a="cerrar">Cerrar</button></div>',colDe(SEDE))}
+ modal(X+'<h3>🎂 '+d+' de '+MES[CM]+'</h3>'+li.map(tarj).join('')+'<div class="fx"><button class="bt" data-a="cerrar">Cerrar</button></div>',colDe(SEDE),'wb')}
 
 /* ===== Master ===== */
 function loginM(){calienta();modal(X+'<h3>Acceso master</h3><p class="ds">Solo podrás editar los cumpleaños de tu sede.</p><label>Clave<div class="pw"><input id="mp" type="password" autocomplete="new-password" placeholder="Clave"><button type="button" data-a="ojo">Ver</button></div></label><div id="mm" class="ms"></div><div class="fx"><button class="bt w" data-a="cerrar">Cancelar</button><button class="bt" data-a="entrar">Entrar</button></div>','#111827')}
@@ -246,7 +255,7 @@ const A={
  sede:t=>{SEDE=t.dataset.s;const n=new Date();CM=n.getMonth();CY=n.getFullYear();cargar()},
  cambiar:()=>{SEDE=null;ITEMS=[];R()},cargar:()=>cargar(),
  mp:()=>{if(--CM<0){CM=11;CY--}R()},mn:()=>{if(++CM>11){CM=0;CY++}R()},
- dia:t=>dia(+t.dataset.d),mus:toggleMus,persona:t=>{const x=ITEMS.find(y=>y.id==t.dataset.id);if(!x)return;const o=md(x.fecha);modal(X+'<h3>🎂 '+o.d+' de '+MES[o.m]+'</h3>'+tarj(x)+'<div class="fx"><button class="bt" data-a="cerrar">Cerrar</button></div>',colDe(SEDE))},fbt:()=>{FBO=!FBO;$('.fbw').classList.toggle('open',FBO);$('.fbt').textContent=(FBO?'Ocultar filtros':'Mostrar buscador y filtros')+((FQ||FA||FS||FMO!=='')?' · activos':'')},max:()=>{const m=$('.mc'),b=$('#mxb');m.classList.toggle('mx');m.style.transform='';DX=DY=0;b.textContent=m.classList.contains('mx')?'Reducir':'Ampliar'},limpiar:()=>{FQ=FA=FS='';FMO='';R()},foto:t=>{FROW=+t.dataset.i;$('#fi').click()},qfoto:t=>{const r=ROWS[+t.dataset.i];r.foto='';r.d=1;refrescar()},master:loginM,entrar:entrar,salir:salir,cerrar:cerrar,gestion:gestion,
+ dia:t=>dia(+t.dataset.d),mus:toggleMus,persona:t=>{const x=ITEMS.find(y=>y.id==t.dataset.id);if(!x)return;const o=md(x.fecha);modal(X+'<h3>🎂 '+o.d+' de '+MES[o.m]+'</h3>'+tarj(x)+'<div class="fx"><button class="bt" data-a="cerrar">Cerrar</button></div>',colDe(SEDE),'wb')},fbt:()=>{FBO=!FBO;$('.fbw').classList.toggle('open',FBO);$('.fbt').textContent=(FBO?'Ocultar filtros':'Mostrar buscador y filtros')+((FQ||FA||FS||FMO!=='')?' · activos':'')},max:()=>{const m=$('.mc'),b=$('#mxb');m.classList.toggle('mx');m.style.transform='';DX=DY=0;b.textContent=m.classList.contains('mx')?'Reducir':'Ampliar'},limpiar:()=>{FQ=FA=FS='';FMO='';R()},foto:t=>{FROW=+t.dataset.i;$('#fi').click()},qfoto:t=>{const r=ROWS[+t.dataset.i];r.foto='';r.d=1;refrescar()},master:loginM,entrar:entrar,salir:salir,cerrar:cerrar,gestion:gestion,
  ojo:()=>{const i=$('#mp');i.type=i.type=='password'?'text':'password'},
  addf:()=>addf(1),addf5:()=>addf(5),gdr:gdr,delf:t=>delf(+t.dataset.i)};
 document.addEventListener('click',e=>{const t=e.target.closest('[data-a]');if(!t){if(e.target.id=='md')cerrar();return}const f=A[t.dataset.a];if(f)f(t)});
